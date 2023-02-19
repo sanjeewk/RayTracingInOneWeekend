@@ -20,19 +20,24 @@ class Vec3:
         return self.vector/self.length
 
     def __add__(self, v2):
-        self.vector += v2.vector
+        v = self.vector + v2.vector
+        return Vec3(v[0],v[1],v[2])
 
     def __sub__(self, v2):
-        self.vector -= v2.vector  
+        v = self.vector - v2.vector
+        return Vec3(v[0],v[1],v[2])
 
     def __mul__(self, n):
-        self.vector = n * vector
+        v = n * self.vector
+        return Vec3(v[0],v[1],v[2])
 
     def mul(self, v2):
-        self.vector = v2.vector * self.vector
+        v = v2.vector * self.vector
+        return Vec3(v[0],v[1],v[2])
 
     def __truediv__(self, n):
-        self.vector = self.vector/n
+        v = self.vector/n
+        return Vec3(v[0],v[1],v[2])
 
 
 def dot(v1: Vec3, v2: Vec3) -> int:
@@ -44,5 +49,5 @@ def cross(v1: Vec3, v2: Vec3) -> Vec3:
     return Vec3(cross[0], cross[1], cross[2])
 
 def unit_vector(v: Vec3):
-    unit = v1/v1.length
-    return Vec3(unit[0], unit[1], unit[2])
+    return(v/v.length)
+    # return Vec3(unit[0], unit[1], unit[2])
