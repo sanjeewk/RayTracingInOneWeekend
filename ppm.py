@@ -8,9 +8,7 @@ def main():
     ppm_image = open(image_path, "wt")
     ppm_image.write(f"P3\n{image_width} {image_height}\n255\n")
     for j in range(image_height, -1, -1):
-        
         for i in range(0, image_width, 1):
-
             colour = Vec3(float(i)/float(image_height), float(j)/float(image_width), 0.2)
             ir = int(255.99*colour.r)
             ig = int(255.99*colour.g)
