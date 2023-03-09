@@ -17,3 +17,9 @@ Create vec3 class
 Create Ray class and send rays into the scene 
 
 ![step3](images/png/step3.png)
+
+### Step 4: Create Sphere 
+
+Add sphere to the scene 
+
+![step4](images/png/step4.png)

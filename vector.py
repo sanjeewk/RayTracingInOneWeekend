@@ -27,7 +27,7 @@ class Vec3:
         v = self.vector - v2.vector
         return Vec3(v[0],v[1],v[2])
 
-    def __mul__(self, n):
+    def __mul__(self, n: float):
         v = n * self.vector
         return Vec3(v[0],v[1],v[2])
 
@@ -41,8 +41,8 @@ class Vec3:
 
 
 def dot(v1: Vec3, v2: Vec3) -> int:
-    dot = v1 * v2
-    return Vec3(dot[0] , dot[1] , dot[2])
+    dot = v1.vector * v2.vector
+    return (dot[0] + dot[1] + dot[2])
 
 def cross(v1: Vec3, v2: Vec3) -> Vec3:
     cross = np.cross(v1.vector,v2.vector)
