@@ -38,7 +38,7 @@ class Vec3:
     def __truediv__(self, n):
         v = self.vector/n
         return Vec3(v[0],v[1],v[2])
-
+# __iadd__
 
 def dot(v1: Vec3, v2: Vec3) -> int:
     dot = v1.vector * v2.vector

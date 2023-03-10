@@ -29,3 +29,9 @@ Add sphere to the scene
 Add shading using with surface normals and handle multiple objects
 
 ![step5](images/png/step5.png)
+
+## Step 6: Anti Aliasing 
+
+Create a camera class and use multiple rays at each pixel for anti aliasing
+
+![step6](images/png/step6.png)
