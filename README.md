@@ -2,7 +2,7 @@
 
 Python implementation of [Ray Tracing in One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html)
 
-### Step 1: Output ppm image
+### Step 1: Output PPM Image
 
 Output RGB values to ppm image
 
@@ -23,3 +23,9 @@ Create Ray class and send rays into the scene
 Add sphere to the scene 
 
 ![step4](images/png/step4.png)
+
+## Step 5: Surface Normals and Multiple objects
+
+Add shading using with surface normals and handle multiple objects
+
+![step5](images/png/step5.png)
