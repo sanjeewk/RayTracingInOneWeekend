@@ -35,3 +35,9 @@ Add shading using with surface normals and handle multiple objects
 Create a camera class and use multiple rays at each pixel for anti aliasing
 
 ![step6](images/png/step6.png)
+
+## Step 7: Diffuse Materials
+
+Mimic a diffuse material with random light reflections
+
+![step7](images/png/step7.png)
