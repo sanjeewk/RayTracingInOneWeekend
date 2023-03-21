@@ -9,23 +9,24 @@ from sphere import Sphere
 from hittable_list import Hittable_List
 from hittable import HitRecord
 from camera import Camera
+from material import *
 
-def random_in_unit_sphere():
-    p = Vec3(random.random(), random.random(), random.random())*2 - Vec3(1.0, 1.0, 1.0)
-    while p.length_squared >= 1.0:
-        p = Vec3(random.random(), random.random(), random.random())*2 - Vec3(1.0, 1.0, 1.0)
-    return p
+# def random_in_unit_sphere():
+#     p = Vec3(random.random(), random.random(), random.random())*2 - Vec3(1.0, 1.0, 1.0)
+#     while p.length_squared >= 1.0:
+#         p = Vec3(random.random(), random.random(), random.random())*2 - Vec3(1.0, 1.0, 1.0)
+#     return p
 
 def colour(r: Ray, world, depth):
     hit_record = HitRecord()
-
-    if (depth <= 0):
-        return Vec3(0,0,0)
     
     if world.hit(r, 0.001, sys.float_info.max, hit_record):
-        target = hit_record.p + hit_record.normal + random_in_unit_sphere()
-        return colour(Ray(hit_record.p, target - hit_record.p), world, depth-1) * 0.5
-
+        scattered = Ray(origin=Vec3(0.0, 0.0, 0.0), direction=Vec3(0.0, 0.0, 0.0))
+        hit = hit_record.material.scatter(r, hit_record, scattered)
+        if depth >= 0 and hit[0]:
+            return colour(scattered, world, depth-1).mul(hit[1])
+        else:
+            return Vec3(0.0, 0.0, 0.0)
     else:
         unit_direction = unit_vector(r.direction)
         t = 0.5 * (unit_direction.y + 1.0)
@@ -34,7 +35,7 @@ def colour(r: Ray, world, depth):
 
 
 def main():
-    path = os.path.join(os.path.dirname(__file__), "images/ppm/", "step7.ppm")
+    path = os.path.join(os.path.dirname(__file__), "images/ppm/", "step8.ppm")
     ppm_image = open(path, 'wt')
     # Image
     image_width = 400
@@ -46,7 +47,10 @@ def main():
     ppm_image.write(title)
     camera = Camera()
 
-    object_list = [Sphere(Vec3(0.0, 0.0, -1.0), 0.5), Sphere(Vec3(0.0, -100.5, -1.0), 100.0)]
+    object_list = [Sphere(Vec3(0.0, 0.0, -1.0), 0.5, Lambertian(Vec3(0.8, 0.3, 0.3))),
+                   Sphere(Vec3(0.0, -100.5, -1.0), 100.0, Lambertian(Vec3(0.8, 0.8, 0))),
+                   Sphere(Vec3(1.0, 0.0, -1.0), 0.5, Metal(Vec3(0.8, 0.6, 0.2), fuzz=1.0)),
+                   Sphere(Vec3(-1.0, 0.0, -1.0), 0.5, Metal(Vec3(0.8, 0.8, 0.8), fuzz=0.3))]
     world = Hittable_List(object_list)
 
     for j in range(image_height-1, -1, -1):

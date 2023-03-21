@@ -41,3 +41,9 @@ Create a camera class and use multiple rays at each pixel for anti aliasing
 Mimic a diffuse material with random light reflections
 
 ![step7](images/png/step7.png)
+
+## Step 8: Materials
+
+Add a Materials class to handle different materials and how they interact with light
+
+![step8](images/png/step8.png)
